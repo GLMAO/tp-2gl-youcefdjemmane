@@ -5,6 +5,9 @@ import java.util.List;
 
 import com.polytech.tp.Cours;
 import com.polytech.tp.CoursBuilder;
+import com.polytech.tp.CoursEnAnglais;
+import com.polytech.tp.CoursEnLigne;
+import com.polytech.tp.CoursMagistral;
 import com.polytech.tp.Etudiant;
 import com.polytech.tp.GestionnaireEmploiDuTemps;
 import com.polytech.tp.ICours;
@@ -60,6 +63,32 @@ public class App
             .setEnseignant("Mr Zalmati")
             .build();
         gestionnaire.ajouterCours(coursBD); 
+
+
+
+        System.out.println( "\n--- Exercice 3 (Pattern Decorator) ---" );
+
+        // 1. Cours simple (Le Concrete Component)
+        ICours coursSimple = new CoursBuilder()
+            .setMatiere("Economie")
+            .setEnseignant("Mme Dubois")
+            .build();
+        
+        System.out.println("Cours Simple:\n" + coursSimple.getDescription());
+
+        // 2. Décorateur simple
+        ICours coursLigne = new CoursEnLigne(coursSimple);
+        System.out.println("\nCours En Ligne:\n" + coursLigne.getDescription());
+
+        // 3. Décoration cumulable !
+        // Créer un cours qui est à la fois En Ligne ET En Anglais
+        ICours coursCumule = new CoursEnAnglais(coursLigne); // Décore le coursLigne, qui est déjà décoré
+        
+        System.out.println("\nCours Cumulé (En ligne et Anglais):\n" + coursCumule.getDescription());
+        
+        // 4. Utilisation avec le cours de Génie Logiciel de l'Exo 1
+        ICours coursGLMagistral = new CoursMagistral(coursGL);
+        System.out.println("\nCours GL Magistral:\n" + coursGLMagistral.getDescription());
 
     }
 }

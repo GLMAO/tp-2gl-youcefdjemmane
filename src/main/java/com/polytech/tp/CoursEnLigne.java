@@ -1,21 +1,18 @@
 package com.polytech.tp;
 
 public class CoursEnLigne extends CoursDecorator {
-    CoursEnLigne(ICours cours) {
-        //TODO: Implémenter le reste ...
+    
+    public CoursEnLigne(ICours cours) {
+        // Appelle le constructeur de la classe parente (CoursDecorator)
+        super(cours);
     }
 
     @Override
     public String getDescription() {
-        // TODO Auto-generated method stub
-        
-        return null;
+        // Ajoute la nouvelle responsabilité à la description existante (déléguée).
+        return coursDecorated.getDescription() + " (En ligne)";
     }
 
-    @Override
-    public double getDuree() {
-        // TODO Auto-generated method stub
-        
-        return 0;
-    };
+    // Nous déléguons getDuree(), car un cours en ligne a la même durée.
+     @Override public double getDuree() { return coursDecorated.getDuree(); } // Non nécessaire car déjà fait dans l'abstrait
 }
