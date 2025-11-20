@@ -1,7 +1,8 @@
 package com.polytech.tp;
 
+// L'interface Subject définit le contrat pour gérer les observateurs
 public interface Subject {
-    void attach(Observer o);
-    void detach(Observer o);
-    void notifyObservers(String message);
+    void registerObserver(Observer observer);
+    void unregisterObserver(Observer observer);
+    void notifyObservers(String message, Cours coursChange);
 }

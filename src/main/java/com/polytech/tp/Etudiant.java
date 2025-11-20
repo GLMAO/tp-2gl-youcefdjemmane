@@ -1,14 +1,21 @@
 package com.polytech.tp;
 
-public class Etudiant {
+import java.util.List;
+
+public class Etudiant implements Observer{
     private String nom;
+    private List<Cours> coursInscrits; 
 
-    public Etudiant(String nom) {
+    public Etudiant(String nom, List<Cours> coursInscrits) {
         this.nom = nom;
+        this.coursInscrits = coursInscrits;
     }
-
     
-    public void update(String message) {
-        System.out.println("Notification pour l'étudiant " + nom + " : " + message);
+   @Override
+    public void update(String action, Cours coursChange) {
+        
+        if (coursInscrits != null && coursInscrits.contains(coursChange)) {
+            System.out.println(" Notification pour l'étudiant " + this.nom + " : Le cours '" + coursChange.getMatiere() + "' a été " + action + ".");
+        }
     }
 }
