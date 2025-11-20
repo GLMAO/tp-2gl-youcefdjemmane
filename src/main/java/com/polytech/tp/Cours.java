@@ -11,22 +11,27 @@ public class Cours implements ICours {
     private boolean necessiteProjecteur;
 
     
-    public Cours(String matiere, String enseignant, String salle, String date, 
-                 String heureDebut, boolean estOptionnel, String niveau, boolean necessiteProjecteur) {
-        this.matiere = matiere;
-        this.enseignant = enseignant;
-        this.salle = salle;
-        this.date = date;
-        this.heureDebut = heureDebut;
-        this.estOptionnel = estOptionnel;
-        this.niveau = niveau;
-        this.necessiteProjecteur = necessiteProjecteur;
+     Cours(CoursBuilder builder) {
+        this.matiere = builder.getMatiere();
+        this.enseignant = builder.getEnseignant();
+        this.salle = builder.getSalle();
+        this.date = builder.getDate();
+        this.heureDebut = builder.getHeureDebut();
+        this.estOptionnel = builder.isEstOptionnel();
+        this.niveau = builder.getNiveau();
+        this.necessiteProjecteur = builder.isNecessiteProjecteur();
     }
 
     @Override
     public String getDescription() {
-        return "Cours de " + matiere + " avec " + enseignant + " (" + salle + ")";
+      return "Cours : " + matiere + "\n"
+         + "Enseignant : " + enseignant + "\n"
+         + "Salle : " + salle + "\n"
+         + "Date : " + date + "\n"
+         + "Heure : " + heureDebut + "\n"
+         + "Niveau : " + niveau;
     }
+
 
     @Override
     public double getDuree() {
